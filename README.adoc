@@ -1,0 +1,53 @@
+
+Sandro Martini started an initiative to improve the current Grails default profile.
+See https://github.com/grails/grails-core/issues/9467
+
+
+Just to get a grasp at what the different parts of the current `main.css` is, I tried to split things up into different files. Looks like almost everything is related to scaffolding.
+
+Here’s what I did:
+
+* Created a new Grails 3.1.0.M3 project
+* Created a simple domain object and generated scaffolded views (`/foo`).
+* Added a dynamic scaffolded view (`/foo2`) and a simple almost empty page (`/bar`).
+* Kept `main.css`, but created a similar `main_modularized.css` split up into smaller files.
+* Changed `application.css` to require `main_modularized` instead of `main`.
+
+The reason I kept main.css as is, is that it is then easy to switch back and forth between `main.css` and `main_modularized.css` and see that the page looks exactly the same (as order of some css styles has changed slightly).
+
+First take ended up like this:
+
+....
+grails-app/assets/stylesheets/
+├── application.css
+├── errors.css
+├── lib
+│   ├── message-error.css
+│   ├── page-layout.css
+│   ├── scaffold-action.css
+│   ├── scaffold-create-edit.css
+│   ├── scaffold-list.css
+│   ├── scaffold-navigate.css
+│   ├── scaffold-paginate.css
+│   └── scaffold.css
+├── main.css
+├── main_modularized.css
+└── mobile.css
+....
+
+* `message-error.css` includes styles for error messages and success messages. Used both by scaffolded pages and on the general error page.
+* `page-layout.css` includes styles related to the header, footer, site background, width and placement of main content area etc.
+* `scaffold.css` just includes the other scaffold sub files.
+* `scaffold-action.css` is the bottom button row on scaffolded pages (Edit, Delete, Create)
+* `scaffold-create-edit.css` is the body of scaffolded create, edit and show pages
+* `scaffold-list.css` is the body of scaffolded list (`/index`) page
+* `scaffold-navigate.css` is the top button row on scaffolded pages (Foo List, New Foo)
+* `scaffold-paginate.css` is the pagination links on scaffolded pages
+
+
+In `main_modularized.css` there are a few styles left, related to general styling of elements like h1, links etc.
+
+What I think is most problematic with the current css is the styling of table elements in `scaffold-list.css`, as they are intrusive to all other use of tables on a site that includes this css, not just scaffolded views. To have these styles scoped to a css class would be a good improvement IMO. This is also the case in `scaffold-create-edit.css` where elements like label, input, select, textarea etc are styled. The scaffolded related styles should not influence anything other than the scaffolded pages.
+
+
+Run with `./gradlew bootRun` or `grails run-app`
