@@ -1,6 +1,7 @@
 /* CREATE/EDIT FORMS AND SHOW PAGES */
 
-fieldset,
+.scaffold-edit fieldset.form,
+.scaffold-create fieldset.form,
 .property-list {
     margin: 0.6em 1.25em 0 1.25em;
     padding: 0.3em 1.8em 1.25em;
@@ -35,41 +36,41 @@ fieldset,
     margin-left: 27%;
 }
 
-label {
+.fieldcontain label {
     cursor: pointer;
     display: inline-block;
     margin: 0 0.25em 0 0;
 }
 
-input, select, textarea {
+.fieldcontain input, .fieldcontain select, .fieldcontain textarea {
     background-color: #fcfcfc;
     border: 1px solid #cccccc;
     font-size: 1em;
     padding: 0.2em 0.4em;
 }
 
-select {
+.fieldcontain select {
     padding: 0.2em 0.2em 0.2em 0;
 }
 
-select[multiple] {
+.fieldcontain select[multiple] {
     vertical-align: top;
 }
 
-textarea {
+.fieldcontain textarea {
     width: 250px;
     height: 150px;
     overflow: auto; /* IE always renders vertical scrollbar without this */
     vertical-align: top;
 }
 
-input[type=checkbox], input[type=radio] {
+.fieldcontain input[type=checkbox], .fieldcontain input[type=radio] {
     background-color: transparent;
     border: 0;
     padding: 0;
 }
 
-input:focus, select:focus, textarea:focus {
+.fieldcontain input:focus, .fieldcontain select:focus, .fieldcontain textarea:focus {
     background-color: #ffffff;
     border: 1px solid #eeeeee;
     outline: 0;
@@ -87,19 +88,19 @@ input:focus, select:focus, textarea:focus {
     top: 0.1em;
 }
 
-ul.one-to-many {
+.fieldcontain ul.one-to-many {
     display: inline-block;
     list-style-position: inside;
     vertical-align: top;
 }
 
-ul.one-to-many li.add {
+.fieldcontain ul.one-to-many li.add {
     list-style-type: none;
 }
 
 /* EMBEDDED PROPERTIES */
 
-fieldset.embedded {
+.fieldcontain fieldset.embedded {
     background-color: transparent;
     border: 1px solid #CCCCCC;
     margin-left: 0;
@@ -111,6 +112,6 @@ fieldset.embedded {
             box-shadow: none;
 }
 
-fieldset.embedded legend {
+.fieldcontain fieldset.embedded legend {
     margin: 0 1em;
 }
