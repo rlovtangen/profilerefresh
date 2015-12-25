@@ -49,5 +49,6 @@ In `main_modularized.css` there are a few styles left, related to general stylin
 
 What I think is most problematic with the current css is the styling of table elements in `scaffold-list.css`, as they are intrusive to all other use of tables on a site that includes this css, not just scaffolded views. To have these styles scoped to a css class would be a good improvement IMO. This is also the case in `scaffold-create-edit.css` where elements like label, input, select, textarea etc are styled. The scaffolded related styles should not influence anything other than the scaffolded pages.
 
+In branch `cssfix` I have tried to scope the CSS to apply to scaffolded pages only.
 
 Run with `./gradlew bootRun` or `grails run-app`
